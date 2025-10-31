@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина - Pricey Meal</title>
+    <link rel="stylesheet" href="cart_page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <a href="index.html"><img src="img/logo_logo копия.png"  alt="logo"></a>
+        </div>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Поиск товаров...">
+                <button class="search-btn" aria-label="Найти">
+                    <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
+                </button>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <div class="action-item">
+                <a href="cart_page.html" class="action-icon"><img src="icons/icons8-cart-35.png" alt="cart"></a>
+                <a href="cart_page.html" class="action-label">Корзина</a>
+            </div>
+            <div class="action-item">
+                <a href="login.html" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
+                <a href="login.html" class="action-label">Профиль</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <div class="cart-page">
+            <h1 class="cart-title">Корзина</h1>
+            
+ <div class="cart-content">
+    <!-- Левая колонка с товарами -->
+    <div class="cart-items">
+        <!-- Товар 1 - Молоко -->
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="products_image/product1.jpg" alt="Молоко Простоквашино">
+            </div>
+            <div class="item-info">
+                <h3 class="item-brand">Простоквашино</h3>
+                <h2 class="item-name">Молоко ультрапастеризованное</h2>
+                <p class="item-weight">950мл</p>
+                <div class="item-store">
+                    <span class="store-icon">🏪</span>
+                    <span class="store-name">Пятерочка</span>
+                </div>
+            </div>
+            <div class="item-nutrition">
+                <div class="nutrition-row">
+                    <span class="nutrition-value">3.2</span>
+                    <span class="nutrition-label">белки</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">2.5</span>
+                    <span class="nutrition-label">жиры</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">4.7</span>
+                    <span class="nutrition-label">углеводы</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">52.0</span>
+                    <span class="nutrition-label">ккал</span>
+                </div>
+            </div>
+            <div class="item-price">
+                <span class="price">89.99₽</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Рекомендация замены для молока -->
+        <div class="replacement-suggestion">
+            <div class="suggestion-header">
+                <span class="suggestion-title">Экономия</span>
+            </div>
+            <div class="suggestion-content">
+                <div class="suggestion-item">
+                    <div class="suggestion-image">
+                        <img src="products_image/product2.jpg" alt="Молоко Домик в деревне">
+                    </div>
+                    <div class="suggestion-info">
+                        <h4>Молоко Домик в деревне</h4>
+                        <p>950мл • 79.99₽</p>
+                        <div class="suggestion-store">
+                            <span class="store-icon">🛒</span>
+                            <span>Магнит</span>
+                        </div>
+                        <span class="suggestion-reason">Дешевле на 10₽</span>
+                    </div>
+                    <button class="replace-btn">Заменить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Товар 2 - Хлеб -->
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="products_image/product3.jpeg" alt="Хлеб Бородинский">
+            </div>
+            <div class="item-info">
+                <h3 class="item-brand">Хлебный дом</h3>
+                <h2 class="item-name">Хлеб Бородинский</h2>
+                <p class="item-weight">400г</p>
+                <div class="item-store">
+                    <span class="store-icon">🛒</span>
+                    <span class="store-name">Магнит</span>
+                </div>
+            </div>
+            <div class="item-nutrition">
+                <div class="nutrition-row">
+                    <span class="nutrition-value">7.5</span>
+                    <span class="nutrition-label">белки</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">1.3</span>
+                    <span class="nutrition-label">жиры</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">41.0</span>
+                    <span class="nutrition-label">углеводы</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">207.0</span>
+                    <span class="nutrition-label">ккал</span>
+                </div>
+            </div>
+            <div class="item-price">
+                <span class="price">45.50₽</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Товар 3 - Йогурт -->
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="products_image/product4.jpg"Йогурт Активия">
+            </div>
+            <div class="item-info">
+                <h3 class="item-brand">Активиа</h3>
+                <h2 class="item-name">Йогурт питьевой с черникой</h2>
+                <p class="item-weight">290г</p>
+                <div class="item-store">
+                    <span class="store-icon">🏪</span>
+                    <span class="store-name">Перекрёсток</span>
+                </div>
+            </div>
+            <div class="item-nutrition">
+                <div class="nutrition-row">
+                    <span class="nutrition-value">3.4</span>
+                    <span class="nutrition-label">белки</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">2.8</span>
+                    <span class="nutrition-label">жиры</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">12.5</span>
+                    <span class="nutrition-label">углеводы</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">89.0</span>
+                    <span class="nutrition-label">ккал</span>
+                </div>
+            </div>
+            <div class="item-price">
+                <span class="price">67.80₽</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">2</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Рекомендация замены для йогурта -->
+        <div class="replacement-suggestion">
+            <div class="suggestion-header">
+                <span class="suggestion-title">Лучшее качество</span>
+            </div>
+            <div class="suggestion-content">
+                <div class="suggestion-item">
+                    <div class="suggestion-image">
+                        <img src="products_image/product5.jpg" alt="Йогурт Чудо">
+                    </div>
+                    <div class="suggestion-info">
+                        <h4>Йогурт Чудо с черникой</h4>
+                        <p>300г • 72.00₽</p>
+                        <div class="suggestion-store">
+                            <span class="store-icon">🏪</span>
+                            <span>Пятерочка</span>
+                        </div>
+                        <span class="suggestion-reason">Больший объем + натуральный состав</span>
+                    </div>
+                    <button class="replace-btn">Заменить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Товар 4 - Сыр -->
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="products_image/product6.jpg" alt="Сыр Российский">
+            </div>
+            <div class="item-info">
+                <h3 class="item-brand">Вкуснотеево</h3>
+                <h2 class="item-name">Сыр Российский полутвердый</h2>
+                <p class="item-weight">200г</p>
+                <div class="item-store">
+                    <span class="store-icon">🛒</span>
+                    <span class="store-name">Лента</span>
+                </div>
+            </div>
+            <div class="item-nutrition">
+                <div class="nutrition-row">
+                    <span class="nutrition-value">23.0</span>
+                    <span class="nutrition-label">белки</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">29.0</span>
+                    <span class="nutrition-label">жиры</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">0.0</span>
+                    <span class="nutrition-label">углеводы</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">360.0</span>
+                    <span class="nutrition-label">ккал</span>
+                </div>
+            </div>
+            <div class="item-price">
+                <span class="price">189.99₽</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Рекомендация замены для сыра -->
+        <div class="replacement-suggestion">
+            <div class="suggestion-header">
+                <span class="suggestion-title">Акция</span>
+            </div>
+            <div class="suggestion-content">
+                <div class="suggestion-item">
+                    <div class="suggestion-image">
+                        <img class="image" src="products_image/product7.jpg" alt="Сыр Ламбер">
+                    </div>
+                    <div class="suggestion-info">
+                        <h4>Сыр Ламбер Российский</h4>
+                        <p>200г • 159.99₽</p>
+                        <div class="suggestion-store">
+                            <span class="store-icon">🏪</span>
+                            <span>Перекрёсток</span>
+                        </div>
+                        <span class="suggestion-reason">Выгода 30₽ по акции</span>
+                    </div>
+                    <button class="replace-btn">Заменить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Товар 5 - Колбаса -->
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="products_image/product8.jpg" alt="Колбаса Докторская">
+            </div>
+            <div class="item-info">
+                <h3 class="item-brand">Царицыно</h3>
+                <h2 class="item-name">Колбаса Докторская вареная</h2>
+                <p class="item-weight">300г</p>
+                <div class="item-store">
+                    <span class="store-icon">📱</span>
+                    <span class="store-name">Яндекс Лавка</span>
+                </div>
+            </div>
+            <div class="item-nutrition">
+                <div class="nutrition-row">
+                    <span class="nutrition-value">12.5</span>
+                    <span class="nutrition-label">белки</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">22.0</span>
+                    <span class="nutrition-label">жиры</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">1.8</span>
+                    <span class="nutrition-label">углеводы</span>
+                </div>
+                <div class="nutrition-row">
+                    <span class="nutrition-value">257.0</span>
+                    <span class="nutrition-label">ккал</span>
+                </div>
+            </div>
+            <div class="item-price">
+                <span class="price">245.00₽</span>
+                <div class="quantity-controls">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    
+
+    <!-- Правая колонка с итогами -->
+    <div class="cart-summary">
+        <div class="summary-card">
+            <h3 class="summary-title">Итого</h3>
+            <div class="summary-row">
+                <span>Товары (5)</span>
+                <span>638.28₽</span>
+            </div>
+            <div class="summary-row">
+                <span>Скидка</span>
+                <span class="discount">-0₽</span>
+            </div>
+            <div class="summary-row total">
+                <span>Общая сумма</span>
+                <span>638.28₽</span>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</body>
+</html>

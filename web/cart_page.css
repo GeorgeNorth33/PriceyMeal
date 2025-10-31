@@ -1,0 +1,563 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #E7F1F4;
+}
+
+/* Верхняя панель */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    border-bottom: 1px solid #a3a3a300;
+    background-color: #037D86;
+    border-bottom: 2px solid #a3a3a346;
+}
+
+/*Кнопки корзины и профиля*/
+.header-actions {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+    height: 50px;
+}
+
+.action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+}
+
+.action-icon {
+    font-size: 20px;
+    order: 1;
+}
+
+.action-label {
+    font-size: 15px;
+    color: whitesmoke;
+    order: 2;
+    margin-bottom: 3px;
+    text-decoration: none;
+}
+
+.action-item:hover .action-label {
+    color: #c7fde9;
+    transition: all 0.25s ease;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    width: 400px;
+    max-width: 100%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px 45px 10px 15px;
+    border: 2px solid #9e9e9e75;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+}
+
+.search-input:hover{
+    border: 2px solid #4e4d4d75;
+    transition: all 0.35s ease-in-out;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 5px rgba(0, 160, 0, 0.3);
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+/* Основной контент */
+.main-container {
+    display: flex;
+    min-height: calc(100vh - 60px);
+}
+
+/* Страница корзины */
+.cart-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.image{
+    height: 50px;
+    width: auto;
+}
+
+.cart-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.cart-content {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+}
+
+/* Левая колонка - товары */
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-info {
+    min-width: 200px;
+}
+
+.item-brand {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.item-weight {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Стили для информации о магазине */
+.item-store {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 4px 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+    width: fit-content;
+}
+
+.store-icon {
+    font-size: 12px;
+}
+
+.store-name {
+    font-weight: 500;
+}
+
+/* Стили для магазина в рекомендациях */
+.suggestion-store {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+/* Адаптивность для информации о магазине */
+@media (max-width: 968px) {
+    .item-store {
+        font-size: 11px;
+        padding: 3px 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .item-store {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Блок с пищевой ценностью */
+.item-nutrition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    min-width: 120px;
+}
+
+.nutrition-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.nutrition-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #037D86;
+    margin-bottom: 2px;
+}
+
+.nutrition-label {
+    font-size: 12px;
+    color: #666;
+    text-transform: lowercase;
+}
+
+/* Блок с ценой и количеством */
+.item-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 120px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.quantity-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.quantity-btn:hover {
+    background: #037D86;
+    color: white;
+}
+
+.quantity {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Рекомендации замены - УМЕНЬШЕННЫЕ РАЗМЕРЫ */
+.replacement-suggestion {
+    background: #f0f7ff;
+    border: 1px solid #037D86;
+    border-radius: 8px;
+    padding: 12px; /* Уменьшено с 15px */
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.suggestion-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px; /* Уменьшено с 12px */
+}
+
+.suggestion-icon {
+    font-size: 14px; /* Уменьшено с 16px */
+}
+
+.suggestion-title {
+    font-size: 16px; /* Уменьшено с 14px */
+    font-weight: 600;
+    color: #037D86;
+}
+
+.suggestion-content {
+    background: white;
+    border-radius: 6px;
+    padding: 10px; /* Уменьшено с 12px */
+}
+
+.suggestion-item {
+    display: grid;
+    grid-template-columns: 50px 1fr auto; /* Уменьшено изображение с 60px */
+    gap: 10px; /* Уменьшено с 12px */
+    align-items: center;
+}
+
+.suggestion-image {
+    width: 50px; /* Уменьшено с 60px */
+    height: 50px; /* Уменьшено с 60px */
+    background: #f5f5f5;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.suggestion-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.suggestion-info h4 {
+    font-size: 13px; /* Уменьшено с 14px */
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 3px 0; /* Уменьшено с 4px */
+}
+
+.suggestion-info p {
+    font-size: 11px; /* Уменьшено с 12px */
+    color: #666;
+    margin: 0 0 3px 0; /* Уменьшено с 4px */
+}
+
+.suggestion-reason {
+    font-size: 10px; /* Уменьшено с 11px */
+    color: #2cb84d;
+    font-weight: 500;
+    background: #f9fffa;
+    padding: 2px 5px; /* Уменьшено с 2px 6px */
+    border-radius: 3px; /* Уменьшено с 4px */
+    display: inline-block;
+}
+
+.replace-btn {
+    padding: 6px 12px; /* Уменьшено с 8px 16px */
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Уменьшено с 6px */
+    cursor: pointer;
+    font-size: 11px; /* Уменьшено с 12px */
+    font-weight: 500;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.replace-btn:hover {
+    background: #1d7731;
+    transition: all 0.25s ease-in-out;
+}
+
+
+/* Правая колонка - итоги */
+.cart-summary {
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+}
+
+.summary-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-row.total {
+    border-bottom: none;
+    border-top: 2px solid #e0e0e0;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+.discount {
+    color: #28a745;
+}
+
+/* Адаптивность */
+@media (max-width: 968px) {
+    .cart-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cart-summary {
+        position: static;
+    }
+    
+    .cart-item {
+        grid-template-columns: 60px 1fr;
+        gap: 15px;
+    }
+    
+    .item-nutrition, .item-price {
+        grid-column: 1 / -1;
+        justify-self: start;
+    }
+    
+    .item-nutrition {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .suggestion-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart-page {
+        padding: 20px 15px;
+    }
+    
+    .cart-title {
+        font-size: 24px;
+    }
+    
+    .cart-item {
+        padding: 15px;
+    }
+    
+    .item-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Дополнительные уменьшения для мобильных */
+    .replacement-suggestion {
+        padding: 10px;
+    }
+    
+    .suggestion-item {
+        grid-template-columns: 40px 1fr auto;
+        gap: 8px;
+    }
+    
+    .suggestion-image {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .item-info {
+        min-width: auto;
+    }
+    
+    .item-nutrition {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .summary-card {
+        padding: 20px 15px;
+    }
+    
+    /* Еще более компактные рекомендации для очень маленьких экранов */
+    .suggestion-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .replace-btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - Pricey Meal</title>
+    <link rel="stylesheet" href="profile.css">
+    <script src="js/profile.js"></script>
+</head>
+<body>
+    <header class="header">
+         <div class="logo-container">
+        <a href="index.html"><img src="img/logo_logo копия.png"  alt="logo"></a>
+    </div>
+ <div class="search-container">
+    <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Поиск товаров...">
+        <button class="search-btn" aria-label="Найти">
+            <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
+        </button>
+    </div>
+</div>
+        
+<div class="header-actions">
+    <div class="action-item">
+        <a href="cart_page.html" class="action-icon"><img src="icons/icons8-cart-35.png" alt="cart"></a>
+        <a href="cart_page.html" class="action-label">Корзина</a>
+    </div>
+    <div class="action-item">
+        <a href="login.html" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
+        <a href="profile.html" class="action-label">Профиль</a>
+    </div>
+</div>
+    </header>
+
+    <div class="main-container">
+        <div class="profile-page">
+            <!-- Боковая навигация -->
+            <aside class="profile-sidebar">
+                <div class="user-card">
+                   
+                    <h2 class="user-name">Иван Иванов</h2>
+                    <p class="user-email">ivan@example.com</p>
+                </div>
+                
+                <nav class="profile-nav">
+                    <a href="#personal" class="nav-item active">Личные данные</a>
+                    <a href="#favorites" class="nav-item">Избранное</a>
+                    <a href="#settings" class="nav-item">Настройки</a>
+                </nav>
+            </aside>
+
+            <!-- Основной контент -->
+            <main class="profile-content">
+                <!-- Раздел личных данных -->
+                <section id="personal" class="content-section active">
+                    <h2>Личные данные</h2>
+                    <form class="profile-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Имя</label>
+                                <input type="text" placeholder="Имя">
+                            </div>
+                            <div class="form-group">
+                                <label>Фамилия</label>
+                                <input type="text" placeholder="Фамилия">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Почта">
+                        </div>
+                        <div class="form-group">
+                            <label>Телефон</label>
+                            <input type="tel" placeholder="Номер телефона">
+                        </div>
+                        <button type="submit" class="save-btn">Сохранить изменения</button>
+                    </form>
+                </section>
+
+
+                <!-- Раздел избранного -->
+                <section id="favorites" class="content-section">
+                    <h2>Избранные товары</h2>
+                    <div class="favorites-grid">
+                        <!-- Карточки избранных товаров -->
+                    </div>
+                </section>
+
+                <section id="settings" class="content-section">
+    <h2>Настройки</h2>
+    
+    <div class="settings-list">
+        <!-- Уведомления -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Уведомления о скидках</h3>
+                <p>Получать уведомления об акциях и специальных предложениях</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Email-рассылка</h3>
+                <p>Получать новости и рекомендации на email</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Конфиденциальность -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Публичный профиль</h3>
+                <p>Разрешить другим пользователям видеть ваш профиль</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Внешний вид -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Темная тема</h3>
+                <p>Использовать темное оформление приложения</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Язык -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Язык интерфейса</h3>
+                <p>Русский</p>
+            </div>
+            <select class="language-select">
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <!-- Безопасность -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Двухфакторная аутентификация</h3>
+                <p>Дополнительная защита вашего аккаунта</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- Управление данными -->
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Экспорт данных</h3>
+                <p>Скачать все ваши персональные данные</p>
+            </div>
+            <button class="export-btn">Экспорт</button>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3>Удаление аккаунта</h3>
+                <p>Безвозвратно удалить аккаунт и все данные</p>
+            </div>
+            <button class="delete-btn">Удалить аккаунт</button>
+        </div>
+    </div>
+</section>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
