@@ -449,3 +449,7 @@
     text-decoration: underline;
 }
 
+.logo-container img {
+    height: 60px;
+    width: auto;
+}

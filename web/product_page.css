@@ -9,6 +9,11 @@ body {
     background-color: #E7F1F4;
 }
 
+.logo-container img {
+    height: 60px;
+    width: auto;
+}
+
 /* Верхняя панель */
 .header {
     display: flex;

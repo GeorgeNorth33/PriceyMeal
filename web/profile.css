@@ -256,7 +256,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    
+    margin-top: 15px;
 }
 
 .form-group label {
@@ -291,7 +291,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .save-btn:hover {

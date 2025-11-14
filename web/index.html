@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <header class="header">
     <div class="logo-container">
         <a href="index.html"><img src="img/logo_logo копия.png"  alt="logo"></a>
     </div>
-
        <div class="search-container">
     <div class="search-wrapper">
         <input type="text" class="search-input" placeholder="Поиск товаров...">
@@ -35,6 +35,47 @@
     </div>
 </div>
     </header>
+
+<div class="filters-minimal">
+    <div class="filters-row">
+        <div class="filter-item">
+            <select class="minimal-select">
+                <option value="popular">По популярности</option>
+                <option value="price-low">Цена ↑</option>
+                <option value="price-high">Цена ↓</option>
+                <option value="name">По названию</option>
+            </select>
+        </div>
+        
+        <div class="filter-item">
+            <select class="minimal-select">
+                <option value="all">Все магазины</option>
+                <option value="store1">Пятерочка</option>
+                <option value="store2">Магнит</option>
+                <option value="store3">Перекресток</option>
+                <option value="store4">Лента</option>
+                <option value="store5">Eurospar</option>
+            </select>
+        </div>
+        
+        <div class="filter-item">
+            <input type="number" class="minimal-input" placeholder="Цена от">
+        </div>
+        
+        <div class="filter-item">
+            <input type="number" class="minimal-input" placeholder="Цена до">
+        </div>
+        
+        <div class="filter-item">
+            <label class="minimal-checkbox">
+                <input type="checkbox" checked>
+                <span>В наличии</span>
+            </label>
+        </div>
+        
+        <button class="filter-reset">Сбросить</button>
+    </div>
+</div>
 
     <div class="main-container">
     <aside class="categories">
@@ -58,7 +99,9 @@
         <main class="products-grid">
             <!-- Пример карточки товара -->
             <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                <div class="product-image">
+                    <img src="products_image/464x464-webp-1435702310" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -78,203 +121,13 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn"><a href="product_page.html">Подробнее</button></a>
-            </div>
-
-             <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
-
-                <div class="product-card">
-                <div class="product-image">Изображение товара</div>
-                <div class="product-title">Название товара</div>
-                <div class="price-list">
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1250 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1300 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1199 ₽</span>
-                    </div>
-                    <div class="price-item">
-                        <div class="store-icon"></div>
-                        <span>1275 ₽</span>
-                    </div>
-                </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
 
             <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                <div class="product-image">
+                    <img src="products_image/product2.jpg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -294,11 +147,14 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
 
-                  <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product3.jpeg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -318,11 +174,14 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
 
-                  <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product4.jpg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -342,11 +201,14 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
 
-                  <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product5.jpg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -366,11 +228,14 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
 
-                  <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product6.jpg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -390,11 +255,14 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
 
-                  <div class="product-card">
-                <div class="product-image">Изображение товара</div>
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product7.jpg" alt="Название товара">
+                </div>
                 <div class="product-title">Название товара</div>
                 <div class="price-list">
                     <div class="price-item">
@@ -414,9 +282,37 @@
                         <span>1275 ₽</span>
                     </div>
                 </div>
-                <button class="details-btn">Подробнее</button>
-            </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
+
+                
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="products_image/product8.jpg" alt="Название товара">
+                </div>
+                <div class="product-title">Название товара</div>
+                <div class="price-list">
+                    <div class="price-item">
+                        <div class="store-icon"></div>
+                        <span>1250 ₽</span>
+                    </div>
+                    <div class="price-item">
+                        <div class="store-icon"></div>
+                        <span>1300 ₽</span>
+                    </div>
+                    <div class="price-item">
+                        <div class="store-icon"></div>
+                        <span>1199 ₽</span>
+                    </div>
+                    <div class="price-item">
+                        <div class="store-icon"></div>
+                        <span>1275 ₽</span>
+                    </div>
+                </div>
+                    <button class="details-btn"><a href="product_page.html">Подробнее</a></button>
+                </div>
         </main>
     </div>
+    <script src="js/main.js"></script>
 </body>
 </html>
