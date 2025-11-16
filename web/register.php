@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<?
+session_start();
+require 'includes/db_connection.php';
+
+// Обработка формы регистрации
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = mysqli_real_escape_string($connection, $_POST['email']);
+    $password = mysqli_real_escape_string($connection, $_POST['password']);
+    $confirm_password = mysqli_real_escape_string($connection, $_POST['confirm_password']);
+    $gender = mysqli_real_escape_string($connection, $_POST['gender']);
+    
+    // Проверка совпадения паролей
+    if ($password !== $confirm_password) {
+        $error_message = "Пароли не совпадают";
+    } else {
+        // Проверка существования email
+        $check_query = "SELECT * FROM users WHERE Email = '$email'";
+        $check_result = mysqli_query($connection, $check_query);
+        
+        if (mysqli_num_rows($check_result) > 0) {
+            $error_message = "Пользователь с таким email уже существует";
+        } else {
+            // Вставка нового пользователя
+            $insert_query = "INSERT INTO users (FirstName, SecondName, Email, Password, PhoneNumber, Gender, DateBirth) 
+                            VALUES ('', '', '$email', '$password', '', '$gender', '0000-00-00')";
+            
+            if (mysqli_query($connection, $insert_query)) {
+                $success_message = "Регистрация успешна! Теперь вы можете войти.";
+            } else {
+                $error_message = "Ошибка регистрации: " . mysqli_error($connection);
+            }
+        }
+    }
+}
+?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricey Meal</title>
+    <link rel="stylesheet" href="register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    <header class="header">
+         <div class="logo-container">
+            <a href="index.php"><img src="img/logo_logo копия.png"  alt="logo"></a>
+        </div>
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Поиск товаров...">
+                <button class="search-btn" aria-label="Найти">
+                    <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
+                </button>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <div class="action-item">
+                <span class="action-icon"><img src="icons/icons8-cart-35.png" alt="Корзина"></span>
+                <span class="action-label">Корзина</span>
+            </div>
+            <div class="action-item">
+                <span class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="Профиль"></span>
+                <span class="action-label">Профиль</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <main class="login-main">
+            <div class="login-container">
+                <h1 class="login-title">Регистрация</h1>
+                
+                <form class="login-form" method="POST">
+                    <?php if (isset($error_message)): ?>
+                        <div class="error-message"><?php echo $error_message; ?></div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($success_message)): ?>
+                        <div class="success-message"><?php echo $success_message; ?></div>
+                    <?php endif; ?>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Почта</label>
+                            <input type="email" name="email" class="form-input" style="width: 300px;" placeholder="example@mail.ru" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Пол</label>
+                        <div class="gender-options">
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="М" class="gender-radio" required>
+                                <span class="gender-label">Мужской</span>
+                            </label>
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="Ж" class="gender-radio" required>
+                                <span class="gender-label">Женский</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Пароль</label>
+                            <input type="password" name="password" class="form-input" placeholder="Введите пароль" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Подтвердите пароль</label>
+                            <input type="password" name="confirm_password" class="form-input" placeholder="Повторите пароль" required>
+                        </div>
+                    </div>
+
+                    <div class="remember-group">
+                        <input type="checkbox" id="remember" name="remember" class="remember-checkbox">
+                        <label for="remember" class="remember-label">Запомнить меня</label>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">Зарегистрироваться</button>
+                </form>
+                <div class="register-link">
+                    Уже есть аккаунт? <a href="login.php" class="link">Войти</a>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
