@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['user_name'] = $user['FirstName'] . ' ' . $user['SecondName'];
         $_SESSION['user_email'] = $user['Email'];
         
-        header("Location: profile.php");
+        header("Location: index.php");
         exit();
     } else {
         $error_message = "Неверный email или пароль";

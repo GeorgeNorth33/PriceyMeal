@@ -41,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         $error_message = "Ошибка при обновлении данных: " . mysqli_error($connection);
     }
 }
+
+// Функция для безопасного вывода данных
+function safe_echo($data) {
+    if ($data === null || $data === '') {
+        return 'Не указано';
+    }
+    return htmlspecialchars($data);
+}
 ?>
 <head>
     <meta charset="UTF-8">
@@ -54,14 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
         <div class="logo-container">
             <a href="index.php"><img src="img/logo_logo копия.png" alt="logo"></a>
         </div>
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" class="search-input" placeholder="Поиск товаров...">
-                <button class="search-btn" aria-label="Найти">
-                    <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
-                </button>
-            </div>
-        </div>
+
         
         <div class="header-actions">
             <div class="action-item">
@@ -84,8 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
             <!-- Боковая навигация -->
             <aside class="profile-sidebar">
                 <div class="user-card">
-                    <h2 class="user-name"><?php echo htmlspecialchars($user['FirstName'] . ' ' . $user['SecondName']); ?></h2>
-                    <p class="user-email"><?php echo htmlspecialchars($user['Email']); ?></p>
+                    <h2 class="user-name"><?php echo safe_echo($user['FirstName']) . ' ' . safe_echo($user['SecondName']); ?></h2>
+                    <p class="user-email"><?php echo safe_echo($user['Email']); ?></p>
                 </div>
                 
                 <nav class="profile-nav">
@@ -113,34 +114,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_profile'])) {
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Имя</label>
-                                <input type="text" name="first_name" placeholder="Имя" 
-                                       value="<?php echo htmlspecialchars($user['FirstName']); ?>" required>
+                                <input type="text" name="first_name" 
+                                       value="<?php echo safe_echo($user['FirstName']); ?>" required>
                             </div>
                             <div class="form-group">
                                 <label>Фамилия</label>
-                                <input type="text" name="second_name" placeholder="Фамилия" 
-                                       value="<?php echo htmlspecialchars($user['SecondName']); ?>" required>
+                                <input type="text" name="second_name" 
+                                       value="<?php echo safe_echo($user['SecondName']); ?>" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email" placeholder="Почта" 
-                                   value="<?php echo htmlspecialchars($user['Email']); ?>" required>
+                                   value="<?php echo safe_echo($user['Email']); ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Телефон</label>
                             <input type="tel" name="phone" placeholder="Номер телефона" 
-                                   value="<?php echo htmlspecialchars($user['PhoneNumber']); ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Дата рождения</label>
-                            <input type="text" value="<?php echo htmlspecialchars($user['DateBirth']); ?>" disabled>
-                            <small>Дата рождения не может быть изменена</small>
+                                   value="<?php echo safe_echo($user['PhoneNumber']); ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Пол</label>
-                            <input type="text" value="<?php echo htmlspecialchars($user['Gender']); ?>" disabled>
+                            <input type="text" value="<?php echo safe_echo($user['Gender']); ?>" disabled>
                         </div>
+                        <div class="form-group disabled-field">
+                            <label>Дата рождения</label>
+                            <input type="text" value="<?php echo safe_echo($user['DateBirth']); ?>" disabled>
+                        <small class="date-birth-note">
+                            <strong>⚠️ Дата рождения не может быть изменена</strong><br>
+                             Это поле защищено от изменений для безопасности вашего аккаунта.
+                            Если необходимо исправить дату рождения, обратитесь в службу поддержки.
+                        </small>
+                        </div>
+  
                         <button type="submit" name="update_profile" class="save-btn">Сохранить изменения</button>
                     </form>
                 </section>
