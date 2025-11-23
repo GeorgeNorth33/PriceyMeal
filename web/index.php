@@ -8,7 +8,7 @@ require 'includes/db_connection.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricey Meal</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="_styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -44,42 +44,6 @@ require 'includes/db_connection.php';
     </div>
 </div>
     </header>
-
-<div class="filters-minimal">
-    <div class="filters-row">
-        <div class="filter-item">
-            <select class="minimal-select" id="sortSelect">
-                <option value="popular">По популярности</option>
-                <option value="price-low">Цена ↑</option>
-                <option value="price-high">Цена ↓</option>
-                <option value="name">По названию</option>
-            </select>
-        </div>
-        
-        <div class="filter-item">
-            <select class="minimal-select" id="storeSelect">
-                <option value="all">Все магазины</option>
-                <?php
-                $stores_query = "SELECT * FROM Store";
-                $stores_result = mysqli_query($connection, $stores_query);
-                while ($store = mysqli_fetch_assoc($stores_result)) {
-                    echo "<option value='{$store['id_store']}'>{$store['store_name']}</option>";
-                }
-                ?>
-            </select>
-        </div>
-        
-        <div class="filter-item">
-            <input type="number" class="minimal-input" id="priceFrom" placeholder="Цена от">
-        </div>
-        
-        <div class="filter-item">
-            <input type="number" class="minimal-input" id="priceTo" placeholder="Цена до">
-        </div>
-        
-        <button class="filter-reset" onclick="resetFilters()">Сбросить</button>
-    </div>
-</div>
 
     <div class="main-container">
     <aside class="categories">
@@ -127,6 +91,7 @@ require 'includes/db_connection.php';
                         <div class="product-image">
                             <img src="products_image/<?php echo $product['image']; ?>" alt="<?php echo $product['Name']; ?>" onerror="this.src='img/placeholder.jpg'">
                         </div>
+                        
                         <div class="product-title"><?php echo $product['Name']; ?></div>
                         <div class="price-list">
                             <?php
@@ -159,13 +124,5 @@ require 'includes/db_connection.php';
         </main>
     </div>
     <script src="js/main.js"></script>
-    <script>
-    function resetFilters() {
-        document.getElementById('sortSelect').value = 'popular';
-        document.getElementById('storeSelect').value = 'all';
-        document.getElementById('priceFrom').value = '';
-        document.getElementById('priceTo').value = '';
-    }
-    </script>
 </body>
 </html>

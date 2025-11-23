@@ -1,113 +1,204 @@
-// main.js
+// main.js - исправленная версия для горизонтальных фильтров
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded - initializing filters');
+    
+    // Инициализация фильтров
+    initFilters();
+    
+    // Инициализация поиска
+    initSearch();
+    
+    // Инициализация категорий
+    initCategories();
+});
+
+function initFilters() {
+    const filterForm = document.getElementById('filterForm');
+    if (!filterForm) return;
+    
     const minimalSelects = document.querySelectorAll('.minimal-select');
     const minimalInputs = document.querySelectorAll('.minimal-input');
-    const minimalCheckbox = document.querySelector('.minimal-checkbox input');
     const filterReset = document.querySelector('.filter-reset');
     
-    // Функция валидации ввода - запрет отрицательных значений
-    function validatePriceInput(input) {
-        // Удаляем все нечисловые символы, кроме точки и минуса
-        let value = input.value.replace(/[^\d.-]/g, '');
-        
-        // Если значение отрицательное или начинается с минуса
-        if (value.startsWith('-') || parseFloat(value) < 0) {
-            // Удаляем минус и оставляем только положительное число
-            value = value.replace('-', '');
-            // Если после удаления минуса осталась пустая строка, оставляем пустую
-            if (value === '') value = '';
-        }
-        
-        // Обновляем значение в поле ввода
-        input.value = value;
-        
-        return value;
-    }
-    
-    // Функция для обработки ввода с валидацией
-    function handlePriceInput(input) {
-        // Валидируем значение
-        const validatedValue = validatePriceInput(input);
-        
-        // Если значение изменилось, запускаем таймер для применения фильтров
-        if (validatedValue !== input.getAttribute('data-last-value')) {
-            input.setAttribute('data-last-value', validatedValue);
-            
-            clearTimeout(input.timer);
-            input.timer = setTimeout(applyMinimalFilters, 500);
-        }
-    }
-    
+    console.log('Found elements:', {
+        selects: minimalSelects.length,
+        inputs: minimalInputs.length,
+        reset: !!filterReset
+    });
+
     // Функция применения фильтров
     function applyMinimalFilters() {
-        const filters = {
-            sort: document.querySelector('.minimal-select').value,
-            store: document.querySelectorAll('.minimal-select')[1].value,
-            priceFrom: document.querySelectorAll('.minimal-input')[0].value,
-            priceTo: document.querySelectorAll('.minimal-input')[1].value,
-            inStock: minimalCheckbox.checked
-        };
+        console.log('Applying filters...');
         
-        console.log('Применены фильтры:', filters);
-        // Здесь будет реальная логика фильтрации товаров
+        // Показываем индикатор загрузки
+        const productsGrid = document.querySelector('.products-grid');
+        if (productsGrid) {
+            productsGrid.innerHTML = '<div class="loading">Загрузка товаров...</div>';
+        }
+        
+        // Отправляем форму
+        filterForm.submit();
     }
-    
+
     // Сброс фильтров
     function resetMinimalFilters() {
-        minimalSelects.forEach((select, index) => {
-            select.value = index === 0 ? 'popular' : 'all';
-        });
-        
-        minimalInputs.forEach(input => {
-            input.value = '';
-            input.setAttribute('data-last-value', '');
-        });
-        
-        minimalCheckbox.checked = true;
-        
-        applyMinimalFilters();
+        console.log('Resetting filters');
+        window.location.href = 'index.php';
     }
-    
-    // Слушатели событий для полей ввода цены
+
+    // Валидация ввода цены
+    function validatePriceInput(input) {
+        let value = input.value.replace(/[^\d.]/g, '');
+        
+        // Удаляем лишние точки
+        const parts = value.split('.');
+        if (parts.length > 2) {
+            value = parts[0] + '.' + parts.slice(1).join('');
+        }
+        
+        // Ограничиваем до 2 знаков после запятой
+        if (parts.length === 2 && parts[1].length > 2) {
+            value = parts[0] + '.' + parts[1].substring(0, 2);
+        }
+        
+        input.value = value;
+        return value;
+    }
+
+    // Обработчик ввода с задержкой
+    function handlePriceInput(input) {
+        validatePriceInput(input);
+        
+        clearTimeout(input.timer);
+        input.timer = setTimeout(() => {
+            applyMinimalFilters();
+        }, 800);
+    }
+
+    // Назначаем обработчики для select элементов
+    minimalSelects.forEach(select => {
+        select.addEventListener('change', function() {
+            console.log('Select changed:', this.name, this.value);
+            applyMinimalFilters();
+        });
+    });
+
+    // Назначаем обработчики для input элементов
     minimalInputs.forEach(input => {
         // Валидация при вводе
         input.addEventListener('input', function() {
             handlePriceInput(this);
         });
         
-        // Валидация при потере фокуса (на случай, если пользователь ввел отрицательное значение)
+        // Валидация при потере фокуса
         input.addEventListener('blur', function() {
             validatePriceInput(this);
             applyMinimalFilters();
-        });
-        
-        // Валидация при вставке из буфера обмена
-        input.addEventListener('paste', function(e) {
-            // Даем событию paste завершиться, затем валидируем
-            setTimeout(() => {
-                validatePriceInput(this);
-            }, 0);
         });
         
         // Предотвращаем ввод минуса
         input.addEventListener('keydown', function(e) {
             if (e.key === '-' || e.key === 'Minus') {
                 e.preventDefault();
-                return false;
             }
         });
     });
+
+    // Обработчик кнопки сброса
+    if (filterReset) {
+        filterReset.addEventListener('click', function(e) {
+            e.preventDefault();
+            resetMinimalFilters();
+        });
+    }
+
+    console.log('Filters initialized successfully');
+}
+
+function initSearch() {
+    const searchInput = document.querySelector('.search-input');
+    const searchForm = document.querySelector('#searchForm');
     
-    // Слушатели событий для остальных элементов
-    minimalSelects.forEach(select => {
-        select.addEventListener('change', applyMinimalFilters);
+    if (searchInput && searchForm) {
+        let searchTimeout;
+        
+        searchInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (this.value.length >= 2 || this.value.length === 0) {
+                    console.log('Submitting search form');
+                    searchForm.submit();
+                }
+            }, 800);
+        });
+    }
+}
+
+function initCategories() {
+    const categoryLinks = document.querySelectorAll('.categories a[data-category]');
+    
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const categoryId = this.getAttribute('data-category');
+            filterByCategory(categoryId);
+        });
     });
+}
+
+// Глобальные функции для использования в HTML
+function filterByCategory(categoryId) {
+    const form = document.getElementById('filterForm');
+    if (!form) return;
     
-    minimalCheckbox.addEventListener('change', applyMinimalFilters);
-    filterReset.addEventListener('click', resetMinimalFilters);
+    // Удаляем старый параметр категории если есть
+    const oldCategoryInput = form.querySelector('input[name="category"]');
+    if (oldCategoryInput) {
+        oldCategoryInput.remove();
+    }
     
-    // Инициализация - устанавливаем начальные значения
-    minimalInputs.forEach(input => {
-        input.setAttribute('data-last-value', '');
-    });
-});
+    // Добавляем новый параметр категории
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'category';
+    input.value = categoryId;
+    form.appendChild(input);
+    
+    console.log('Filtering by category:', categoryId);
+    form.submit();
+}
+
+function resetFilters() {
+    window.location.href = 'index.php';
+}
+
+// Функции для очистки отдельных фильтров
+function clearSearch() {
+    const url = new URL(window.location);
+    url.searchParams.delete('search');
+    window.location.href = url.toString();
+}
+
+function clearStoreFilter() {
+    const url = new URL(window.location);
+    url.searchParams.delete('store');
+    window.location.href = url.toString();
+}
+
+function clearPriceFrom() {
+    const url = new URL(window.location);
+    url.searchParams.delete('price_from');
+    window.location.href = url.toString();
+}
+
+function clearPriceTo() {
+    const url = new URL(window.location);
+    url.searchParams.delete('price_to');
+    window.location.href = url.toString();
+}
+
+function clearSort() {
+    const url = new URL(window.location);
+    url.searchParams.delete('sort');
+    window.location.href = url.toString();
+}

@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($product['Name']); ?> - Pricey Meal</title>
-    <link rel="stylesheet" href="product_page.css">
+    <link rel="stylesheet" href="_product_page.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
@@ -115,13 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
         <div class="logo-container">
             <a href="index.php"><img src="img/logo_logo копия.png" alt="logo"></a>
         </div>
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" class="search-input" placeholder="Поиск товаров...">
-                <button class="search-btn" aria-label="Найти">
-                    <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
-                </button>
-            </div>
+
         </div>
         
         <div class="header-actions">
@@ -234,7 +228,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_to_cart'])) {
                                         $similar['min_price'] = $similar['min_price'] ?? 0;
                                         ?>
                                         <div class="similar-product-card">
-
+                                            <div class="similar-product-image">
+                                                <img src="products_image/<?php echo htmlspecialchars($similar['image']); ?>" 
+                                                     alt="<?php echo htmlspecialchars($similar['Name']); ?>"
+                                                     onerror="this.src='img/placeholder.jpg'; this.style.maxWidth='40px'; this.style.maxHeight='40px';">
                                             </div>
                                             <div class="similar-product-info">
                                                 <h4 class="similar-product-name"><?php echo htmlspecialchars($similar['Name']); ?></h4>
