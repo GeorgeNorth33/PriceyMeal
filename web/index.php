@@ -3,100 +3,72 @@
 <?
 session_start();
 require 'includes/db_connection.php';
+
+// Добавьте версию для предотвращения кэширования
+$version = '1.0.' . time();
 ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Pricey Meal</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/_styles.css?v=<?php echo $version; ?>">
 </head>
 <body>
 
     <header class="header">
-    <div class="logo-container">
-        <a href="index.php"><img src="img/logo_logo копия.png"  alt="logo"></a>
-    </div>
-       <div class="search-container">
-    <div class="search-wrapper">
-        <input type="text" class="search-input" placeholder="Поиск товаров...">
-        <button class="search-btn" aria-label="Найти">
-            <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
-        </button>
-    </div>
-</div>
+        <div class="logo-container">
+            <a href="index.php"><img src="img/logo_logo копия.png" alt="logo"></a>
+        </div>
         
-<div class="header-actions">
-    <div class="action-item">
-        <a href="cart_page.php" class="action-icon"><img src="icons/icons8-cart-35.png" alt="cart"></a>
-        <a href="cart_page.php" class="action-label">Корзина</a>
-    </div>
-    <div class="action-item">
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <a href="profile.php" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
-            <a href="profile.php" class="action-label">Профиль</a>
-        <?php else: ?>
-            <a href="login.php" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
-            <a href="login.php" class="action-label">Войти</a>
-        <?php endif; ?>
-    </div>
-</div>
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" placeholder="Поиск товаров...">
+                <button class="search-btn" aria-label="Найти">
+                    <img src="icons/icons8-loupe-25-black.png" alt="Найти" width="16" height="16">
+                </button>
+            </div>
+        </div>
+            
+        <div class="header-actions">
+            <div class="action-item">
+                <a href="cart_page.php" class="action-icon"><img src="icons/icons8-cart-35.png" alt="cart"></a>
+                <a href="cart_page.php" class="action-label">Корзина</a>
+            </div>
+            <div class="action-item">
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="profile.php" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
+                    <a href="profile.php" class="action-label">Профиль</a>
+                <?php else: ?>
+                    <a href="login.php" class="action-icon"><img src="icons/icons8-user-icon-35.png" alt="profile"></a>
+                    <a href="login.php" class="action-label">Войти</a>
+                <?php endif; ?>
+            </div>
+        </div>
     </header>
 
-<div class="filters-minimal">
-    <div class="filters-row">
-        <div class="filter-item">
-            <select class="minimal-select" id="sortSelect">
-                <option value="popular">По популярности</option>
-                <option value="price-low">Цена ↑</option>
-                <option value="price-high">Цена ↓</option>
-                <option value="name">По названию</option>
-            </select>
-        </div>
-        
-        <div class="filter-item">
-            <select class="minimal-select" id="storeSelect">
-                <option value="all">Все магазины</option>
-                <?php
-                $stores_query = "SELECT * FROM Store";
-                $stores_result = mysqli_query($connection, $stores_query);
-                while ($store = mysqli_fetch_assoc($stores_result)) {
-                    echo "<option value='{$store['id_store']}'>{$store['store_name']}</option>";
-                }
-                ?>
-            </select>
-        </div>
-        
-        <div class="filter-item">
-            <input type="number" class="minimal-input" id="priceFrom" placeholder="Цена от">
-        </div>
-        
-        <div class="filter-item">
-            <input type="number" class="minimal-input" id="priceTo" placeholder="Цена до">
-        </div>
-        
-        <button class="filter-reset" onclick="resetFilters()">Сбросить</button>
-    </div>
-</div>
-
     <div class="main-container">
-    <aside class="categories">
-        <ul>
-            <?php
-            $categories_query = "SELECT * FROM Category";
-            $categories_result = mysqli_query($connection, $categories_query);
-            while ($category = mysqli_fetch_assoc($categories_result)) {
-                echo "<li><a href='#' data-category='{$category['id_product_category']}'>{$category['name']}</a></li>";
-            }
-            ?>
-        </ul>
-    </aside>
+        <aside class="categories">
+            <!-- Контент категорий -->
+            <div class="categories-content">
+                <h3 class="categories-title">Категории</h3>
+                <ul class="categories-list">
+                    <li><a href="#" class="show-all-link active" data-category="all" id="showAllLink">Все товары</a></li>
+                    <?php
+                    $categories_query = "SELECT * FROM Category";
+                    $categories_result = mysqli_query($connection, $categories_query);
+                    while ($category = mysqli_fetch_assoc($categories_result)) {
+                        echo "<li><a href='#' data-category='{$category['id_product_category']}'>{$category['name']}</a></li>";
+                    }
+                    ?>
+                </ul>
+            </div>
+        </aside>
 
         <main class="products-grid">
             <?php
-            // Запрос для получения товаров с минимальными ценами
             $products_query = "
                 SELECT p.*, 
                        MIN(ps.price) as min_price
@@ -110,7 +82,6 @@ require 'includes/db_connection.php';
             
             if (mysqli_num_rows($products_result) > 0) {
                 while ($product = mysqli_fetch_assoc($products_result)) {
-                    // Получаем 3 лучшие цены для этого товара
                     $prices_query = "
                         SELECT ps.price, s.store_name, sl.logo 
                         FROM `Product Store` ps 
@@ -123,10 +94,15 @@ require 'includes/db_connection.php';
                     $prices_result = mysqli_query($connection, $prices_query);
                     ?>
                     
-                    <div class="product-card" data-product-id="<?php echo $product['id_product']; ?>">
+                    <a href="product_page.php?id=<?php echo $product['id_product']; ?>" class="product-card" 
+                       data-product-id="<?php echo $product['id_product']; ?>" 
+                       data-category="<?php echo $product['id_product_category']; ?>" 
+                       data-price="<?php echo $product['min_price'] ? $product['min_price'] : 0; ?>"
+                       data-name="<?php echo htmlspecialchars($product['Name']); ?>">
                         <div class="product-image">
                             <img src="products_image/<?php echo $product['image']; ?>" alt="<?php echo $product['Name']; ?>" onerror="this.src='img/placeholder.jpg'">
                         </div>
+                        
                         <div class="product-title"><?php echo $product['Name']; ?></div>
                         <div class="price-list">
                             <?php
@@ -136,7 +112,7 @@ require 'includes/db_connection.php';
                                     echo "
                                     <div class='price-item'>
                                         <div class='store-icon'>
-                                            <img src='{$store_logo}' alt='{$price['store_name']}' width='20' height='20' onerror=\"this.src='icons/default-store.png'\">
+                                            <img src='{$store_logo}' alt='{$price['store_name']}' onerror=\"this.src='icons/default-store.png'\">
                                         </div>
                                         <span>{$price['price']} ₽</span>
                                     </div>";
@@ -146,10 +122,7 @@ require 'includes/db_connection.php';
                             }
                             ?>
                         </div>
-                        <button class="details-btn">
-                            <a href="product_page.php?id=<?php echo $product['id_product']; ?>">Подробнее</a>
-                        </button>
-                    </div>
+                    </a>
                     <?php
                 }
             } else {
@@ -158,14 +131,6 @@ require 'includes/db_connection.php';
             ?>
         </main>
     </div>
-    <script src="js/main.js"></script>
-    <script>
-    function resetFilters() {
-        document.getElementById('sortSelect').value = 'popular';
-        document.getElementById('storeSelect').value = 'all';
-        document.getElementById('priceFrom').value = '';
-        document.getElementById('priceTo').value = '';
-    }
-    </script>
+    <script src="js/filters.js"></script>
 </body>
 </html>

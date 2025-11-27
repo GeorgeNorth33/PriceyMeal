@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="main-container">
         <div class="cart-page">
-            <h1 class="cart-title">Корзина</h1>
+            <!-- <h1 class="cart-title">Корзина</h1> -->
             
             <?php if (empty($cart_items)): ?>
                 <div class="empty-cart">
@@ -152,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <!-- Кнопка очистки корзины -->
                     <form method="POST" class="clear-cart-form">
                         <button type="submit" name="clear_cart" class="clear-cart-btn">
+                            <p>Очистить корзину</p>
                         </button>
                     </form>
                 </div>

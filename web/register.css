@@ -498,3 +498,41 @@
     font-size: 14px;
     color: #333;
 }
+
+/* Стили для поля даты рождения */
+.date-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.form-input[type="date"] {
+    color: #666;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.form-input[type="date"]:focus {
+    color: #333;
+}
+
+.form-input[type="date"]:valid {
+    color: #333;
+}
+
+/* Улучшение внешнего вида для всех полей ввода */
+.form-input {
+    transition: all 0.3s ease;
+}
+
+.form-input:invalid:not(:focus) {
+    border-color: #e0e0e0;
+}
+
+/* Адаптивность для поля даты */
+@media (max-width: 480px) {
+    .form-input[type="date"] {
+        font-size: 16px; /* Предотвращает масштабирование на iOS */
+    }
+}
